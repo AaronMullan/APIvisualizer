@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import Records from '../components/Records';
-import { discogsApi } from '../services';
+import Record from '../components/Record';
+import { getRecord } from '../services/discogsApi';
 
 const RecordDisplayerFn = () => {
   const [record, setRecord] = useState([]);
 
-  generateid = () => {
+  const generateid = () => {
     return Math.floor(Math.random() * 2700000);
-  }
-  fetchRecord = () => {
-    const randomid = this.generateid();
+  };
+  const fetchRecord = () => {
+    const randomid = generateid();
     return getRecord(randomid)
-      .then(res => console.log(res))
-      .then(records => this.setState({ records }));
-  }
+      .then(record => setRecord(record));
+  };
+  useEffect(() => {
+    fetchRecord();
+  }, []);
   return (
     <>
-      <button onclick= >Get it</button>
+      <button onClick={fetchRecord} >Get it</button>
+      <h2>Random Album Title</h2>
+      <Record title={record.title} />
     </>
   );
 

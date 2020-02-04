@@ -24,8 +24,8 @@ export default class RecordDisplayer extends Component {
   render() {
     return (
       <>
-        <button onClick={this.fetchRecord}>Fetch</button>
-        <h2>Record</h2>
+        <button onClick={this.fetchRecord}>Get New Random Title</button>
+        <h2>Random Album Title</h2>
         <Record title={this.state.record.title} />
       </>
     );
