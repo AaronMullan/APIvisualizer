@@ -1,5 +1,15 @@
 import React from 'react';
+import RecordDisplayer from '../containers/RecordDisplayer';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
+
 
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Header />
+      <RecordDisplayer />
+      <Footer />
+    </>
+  );
 }
