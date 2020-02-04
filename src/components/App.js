@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <RecordDisplayer />
+      <RecordDisplayerFn />
       <Footer />
     </>
   );
