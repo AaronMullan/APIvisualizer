@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react';
 import { getRecord } from '../services/discogsApi';
 
-export const useTitles = () => {
-  const [record, setRecord] = useState({});
+export const useTitles = (numberOfTitles) => {
+  const [records, setRecords] = useState([]);
 
   const generateid = () => {
     return Math.floor(Math.random() * 2700000);
   };
-  const fetchRecord = () => {
-    const randomid = generateid();
-    return getRecord(randomid)
-      .then(record => setRecord(record));
+  const fetchRecords = () => {
+    for(let i = 0; i < numberOfTitles; i++) {
+      const randomid = generateid();
+      getRecord(randomid)
+        .then(record => record)
+        .then(record => {
+          setRecords((previousRecords) => [...previousRecords, record]);
+        });
+    }
   };
+  
   useEffect(() => {
-    fetchRecord();
+    fetchRecords();
   }, []);
-  return { record, fetchRecord };
+
+  return { records, fetchRecords };
 };
